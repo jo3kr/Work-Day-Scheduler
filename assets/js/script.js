@@ -49,11 +49,11 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-    // Save button click event listener
-    $(".saveBtn").on("click", function () {
-      const parent = $(this).parent();
-      const hourId = parent.attr("id");
-      const description = parent.find(".description").val();
-      localStorage.setItem(hourId, description);
-    });
+  // Save button click event listener
+  $(".saveBtn").on("click", function () {
+    const parent = $(this).parent();
+    const hourId = parent.attr("id");
+    const description = parent.find(".description").val();
+    localStorage.setItem(hourId, description);
+  });
 });
