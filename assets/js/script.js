@@ -10,7 +10,7 @@ $(function () {
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-   // Create time blocks for standard business hours (9AM - 5PM)
+  // Create time blocks for standard business hours (9AM - 5PM)
   for (let i = 9; i <= 17; i++) {
     const storedDescription = localStorage.getItem("hour-" + i);
     const timeBlock = $(`
@@ -31,23 +31,29 @@ $(function () {
     // attribute of each time-block be used to conditionally add or remove the
     // past, present, and future classes? How can Day.js be used to get the
     // current hour in 24-hour time?
-        // Color code time blocks based on past, present, or future
-        const currentHour = dayjs().hour();
-        if (i < currentHour) {
-          timeBlock.addClass("past");
-        } else if (i === currentHour) {
-          timeBlock.addClass("present");
-        } else {
-          timeBlock.addClass("future");
-        }
-    
-        $(".container-lg").append(timeBlock);
-      }
+    // Color code time blocks based on past, present, or future
+    const currentHour = dayjs().hour();
+    if (i < currentHour) {
+      timeBlock.addClass("past");
+    } else if (i === currentHour) {
+      timeBlock.addClass("present");
+    } else {
+      timeBlock.addClass("future");
+    }
 
-    // TODO: Add code to get any user input that was saved in localStorage and set
-    // the values of the corresponding textarea elements. HINT: How can the id
-    // attribute of each time-block be used to do this?
-    //
-    // TODO: Add code to display the current date in the header of the page.
+    $(".container-lg").append(timeBlock);
   }
+
+  // TODO: Add code to get any user input that was saved in localStorage and set
+  // the values of the corresponding textarea elements. HINT: How can the id
+  // attribute of each time-block be used to do this?
+  //
+  // TODO: Add code to display the current date in the header of the page.
+    // Save button click event listener
+    $(".saveBtn").on("click", function () {
+      const parent = $(this).parent();
+      const hourId = parent.attr("id");
+      const description = parent.find(".description").val();
+      localStorage.setItem(hourId, description);
+    });
 });
